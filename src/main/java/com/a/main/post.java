@@ -9,11 +9,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class post {
+
     public static void postMessage(String id, String url) {
 //        String id = "19407020611";
 //        String url="https://ehallplatform.xust.edu.cn/default/jkdk/mobile/mobJkdkAdd_test.jsp?uid=QTJFQTRGOEZBNkIyRDNGQ0Y3MEQ1Q0YwQkVCODYyMjQ=";
@@ -52,13 +54,17 @@ public class post {
     }
 
     private static String changeMessage(String message) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 1);
+
         JSONObject jo = JSONObject.fromObject(message);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("procinstid", "");
         jsonObject.put("empid", jo.get("EMPID"));
         jsonObject.put("shzt", jo.get("SHZT"));
         jsonObject.put("id", "");
-        jsonObject.put("jrrq1", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        jsonObject.put("jrrq1", new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()));//
         jsonObject.put("sjh2", jo.get("SJH2"));
         jsonObject.put("jrsfzx3", jo.get("JRSFZX3"));
         jsonObject.put("szdd4", jo.get("SZDD4"));
@@ -99,12 +105,12 @@ public class post {
         jsonObject.put("sfncxaswfx16", jo.get("SFNCXASWFX16"));
         jsonObject.put("dm", "4006078");
         jsonObject.put("jdlx", jo.get("JDLX"));
-        jsonObject.put("tbsj", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        jsonObject.put("tbsj", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));//
         jsonObject.put("fcjtgj17Qt", "");
         jsonObject.put("fcjtgj17", "");
         jsonObject.put("hqddlx", jo.get("HQDDLX"));
         jsonObject.put("ymtys", "");
-        jsonObject.put("time", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        jsonObject.put("time", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));//new SimpleDateFormat("yyyy-MM-dd").format(new Date())
         JSONObject jb = new JSONObject();
         jb.put("xkdjkdk",jsonObject.toString());
         System.out.println(jb.toString());

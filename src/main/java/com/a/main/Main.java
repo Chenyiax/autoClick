@@ -1,8 +1,12 @@
 package com.a.main;
 
 import java.sql.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -21,7 +25,13 @@ public class Main {
 //                }
 //            }
 //        }
-//        post.postMessage("19407020611","https://ehallplatform.xust.edu.cn/default/jkdk/mobile/mobJkdkAdd_test.jsp?uid=QTJFQTRGOEZBNkIyRDNGQ0Y3MEQ1Q0YwQkVCODYyMjQ=");
+//        post.postMessage("19407060121","https://ehallplatform.xust.edu.cn/default/jkdk/mobile/mobJkdkAdd.jsp?uid=NEMwNUU4QzM0MEY2MjY5QTNGMEY2MzVDRTk0Q0RFNjg=");
+
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTime(new Date());
+//        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 1);
+//        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).format(calendar.getTime()));
+
     }
 
     public static void run() {
@@ -41,7 +51,11 @@ public class Main {
                 list.addLast(new Student(resultSet.getString("xh"),resultSet.getString("url")));
             }
             for (Student student: list) {
-                post.postMessage(student.getXh(),student.getUrl());
+                try {
+                    post.postMessage(student.getXh(),student.getUrl());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 System.out.println(student.getXh());
                 System.out.println(student.getUrl());
             }
